@@ -9,7 +9,9 @@ Routes:
 - /nodes/resolve
 """
 from uuid import uuid4
+
 from flask import Flask, jsonify, request
+
 from cerebro.blockchain import Blockchain
 
 # Instantiate our Node

@@ -1,10 +1,12 @@
 import hashlib
 import json
-import requests
+import logging
 from time import time
 from urllib.parse import urlparse
+
+import requests
+
 from cerebro.config import config
-import logging
 
 """
     This class will hold the top level implementation of the Blockchain class.
@@ -206,7 +208,7 @@ class Blockchain(object):
         """
         node = config.master_api_url
         logger.warning(config)
-        response = requests.get(f"http://{node}/node_list")
+        response = requests.get(f"http://{node}/api/list_node")
         logger.info(f"Node List Response\n{response.json()}")
         self.master_node_list = response.json()
         return response.json()

@@ -1,15 +1,12 @@
 import logging
 
 import pymongo
-from cerebro.api import router as api_router
-
 from fastapi import FastAPI
-
-from cerebro.api.db import close_mongo_connection, connect_to_mongo, get_nosql_db
-
 from starlette.middleware.cors import CORSMiddleware
-from cerebro.config import config
 
+from cerebro.api import router as api_router
+from cerebro.api.db import close_mongo_connection, connect_to_mongo, get_nosql_db
+from cerebro.config import config
 
 app = FastAPI()
 logger = logging.getLogger(__name__)

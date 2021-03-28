@@ -1,7 +1,8 @@
 # from motor.motor_asyncio import AsyncIOMotorClient
-from pymongo import MongoClient
 import logging
+
 from cerebro.config import config
+from pymongo import MongoClient
 
 
 # MongoDB
