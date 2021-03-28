@@ -33,9 +33,10 @@ class Blockchain(object):
         self.chain = []
         self.current_transactions = []
         self.nodes = set()
+
         # Genesis block
         self.new_block(previous_hash=1, proof=100)
-        # Init
+        # Get master node list
         self.init_node_list()
 
     @property
@@ -197,7 +198,7 @@ class Blockchain(object):
 
         return False
 
-    async def init_node_list(self):
+    def init_node_list(self):
         """
         Initialize connection to master_api_node:
         - master api accepts
@@ -206,6 +207,6 @@ class Blockchain(object):
         node = config.master_api_url
         logger.warning(config)
         response = requests.get(f"http://{node}/node_list")
-        logger.info(response.keys())
-        self.node_list = response
-        return response
+        logger.info(f"Node List Response\n{response.json()}")
+        self.master_node_list = response.json()
+        return response.json()
