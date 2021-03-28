@@ -1,7 +1,0 @@
-setup.py
-cerebro.egg-info/PKG-INFO
-cerebro.egg-info/SOURCES.txt
-cerebro.egg-info/dependency_links.txt
-cerebro.egg-info/not-zip-safe
-cerebro.egg-info/requires.txt
-cerebro.egg-info/top_level.txt
