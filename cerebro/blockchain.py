@@ -1,27 +1,31 @@
-"""
-This class will hold the top level implementation of the Blockchain class.
-
-An example of a block in the blockchain:
-
-block = {
-    'index': 1,
-    'timestamp': 1506057125.900785,
-    'transactions': [
-        {
-            'sender': "8527147fe1f5426f9dd545de4b27ee00",
-            'recipient': "a77f5cdfa2934df3954a5c7c7da5df1f",
-            'amount': 5,
-        }
-    ],
-    'proof': 324984774000,
-    'previous_hash': "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
-}
-"""
 import hashlib
 import json
 import requests
 from time import time
 from urllib.parse import urlparse
+from cerebro.config import config
+import logging
+
+"""
+    This class will hold the top level implementation of the Blockchain class.
+
+    An example of a block in the blockchain:
+
+    block = {
+        'index': 1,
+        'timestamp': 1506057125.900785,
+        'transactions': [
+            {
+                'sender': "8527147fe1f5426f9dd545de4b27ee00",
+                'recipient': "a77f5cdfa2934df3954a5c7c7da5df1f",
+                'amount': 5,
+            }
+        ],
+        'proof': 324984774000,
+        'previous_hash': "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+    }
+"""
+logger = logging.getLogger(__name__)
 
 
 class Blockchain(object):
@@ -31,6 +35,8 @@ class Blockchain(object):
         self.nodes = set()
         # Genesis block
         self.new_block(previous_hash=1, proof=100)
+        # Init
+        self.init_node_list()
 
     @property
     def last_block(self):
@@ -190,3 +196,16 @@ class Blockchain(object):
             return True
 
         return False
+
+    async def init_node_list(self):
+        """
+        Initialize connection to master_api_node:
+        - master api accepts
+        - master api sends over a node list
+        """
+        node = config.master_api_url
+        logger.warning(config)
+        response = requests.get(f"http://{node}/node_list")
+        logger.info(response.keys())
+        self.node_list = response
+        return response

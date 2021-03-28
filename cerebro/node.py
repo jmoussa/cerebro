@@ -1,3 +1,13 @@
+"""
+Lightweight single blockchain-mining node API
+---------------------------------
+Routes:
+- /mine
+- /transactions/new
+- /chain
+- /nodes/register
+- /nodes/resolve
+"""
 from uuid import uuid4
 from flask import Flask, jsonify, request
 from cerebro.blockchain import Blockchain

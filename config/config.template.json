@@ -1,0 +1,13 @@
+{
+  "master_api_url": "",
+
+  "db_name": "cerebro",
+  "db_url": "mongodb://127.0.0.1:27017/",
+  "db_max_connections_count": 1,
+  "db_min_connections_count": 1,
+
+  "jwt_token_prefix": "h5uydhr6fgh9c8jr",
+
+  "secret_key": "",
+  "access_token_expire_minutes": 10080 //one week
+}

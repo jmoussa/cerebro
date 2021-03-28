@@ -1,3 +1,5 @@
 .vim/
 .DS_Store
 *.egg-info/
+*__pycache__/
+config/config.json
