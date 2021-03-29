@@ -26,6 +26,9 @@ blockchain = Blockchain()
 
 @app.route("/mine", methods=["GET"])
 def mine():
+    """
+    Work on validating the blockchain
+    """
     # We run the proof of work algorithm to get the next proof...
     last_block = blockchain.last_block
     last_proof = last_block["proof"]
@@ -56,6 +59,8 @@ def mine():
 @app.route("/transactions/new", methods=["POST"])
 def new_transaction():
     """
+    Add a transaction to the ledger
+
     :example request:
     {
      "sender": "my address",
@@ -79,6 +84,9 @@ def new_transaction():
 
 @app.route("/chain", methods=["GET"])
 def full_chain():
+    """
+    Have a look at the full ledger
+    """
     response = {
         "chain": blockchain.chain,
         "length": len(blockchain.chain),
@@ -88,6 +96,9 @@ def full_chain():
 
 @app.route("/nodes/register", methods=["POST"])
 def register_nodes():
+    """
+    Registers nearby nodes to validate the ledger against
+    """
     values = request.get_json()
 
     nodes = values.get("nodes")
@@ -106,6 +117,9 @@ def register_nodes():
 
 @app.route("/nodes/resolve", methods=["GET"])
 def consensus():
+    """
+    Resolve our ledger with the other nodes in the registered nodes list
+    """
     replaced = blockchain.resolve_conflicts()
 
     if replaced:

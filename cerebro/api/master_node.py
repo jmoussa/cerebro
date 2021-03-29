@@ -2,7 +2,8 @@
 Master Node API
 - Connects to (decentralized) db
 - Fetches a node list
-- /node_list
+- /list_node
+- /node
 """
 import logging
 from uuid import uuid4
