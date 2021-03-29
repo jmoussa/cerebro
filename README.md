@@ -28,8 +28,8 @@ __Routes:__
 - `GET` (/mine): Mines
 - `POST` (/transactions/new): Add a new transaction
 - `GET` (/chain): Fetch the ledger
-- `POST` (/nodes/register): 
-- /nodes/resolve
+- `POST` (/nodes/register): Registers nearby nodes from node list
+- `GET` (/nodes/resolve): Resolve and validate our ledger with the other registered nodes
 
 ## Running a Mining Node 
 
